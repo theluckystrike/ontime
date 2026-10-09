@@ -15,6 +15,7 @@ export async function startTestServer() {
   return {
     /** same as a clean shutdown: flushes pending writes and clears the restore point, safe to call more than once */
     stop: () => (stopped ??= server.stopServices(0)),
+    socketUrl: `ws://localhost:${serverPort}/ws`,
     get: (path: string) => fetch(`${baseUrl}${path}`),
     /** for requests which are not JSON, such as file uploads */
     request: (path: string, init: RequestInit) => fetch(`${baseUrl}${path}`, init),
